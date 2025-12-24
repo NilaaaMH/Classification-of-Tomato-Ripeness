@@ -108,7 +108,7 @@ Model pre-trained EfficientNetB0 dari ImageNet:
 # Download Model
 Model yang sudah dilatih dapat diunduh melalui Google Drive:
 - CNN Model :
-- ResNet50 Model :
+- ResNet50 Model : https://drive.google.com/file/d/1J2ZojDSyMa3jEm20UHQolXFc_byUMjgl/view?usp=sharing 
 - EfficientNetB0 Model : https://drive.google.com/file/d/1Jw6xCQyuLKEYu4NYSXBrcAcopbKyRuqz/view?usp=sharing 
 
 ## Format model .h5
