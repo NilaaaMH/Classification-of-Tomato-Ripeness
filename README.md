@@ -109,7 +109,7 @@ Model pre-trained EfficientNetB0 dari ImageNet:
 Model yang sudah dilatih dapat diunduh melalui Google Drive:
 - CNN Model :
 - ResNet50 Model :
-- EfficientNetB0 Model :
+- EfficientNetB0 Model : https://drive.google.com/file/d/1Jw6xCQyuLKEYu4NYSXBrcAcopbKyRuqz/view?usp=sharing 
 
 ## Format model .h5
 
@@ -216,17 +216,15 @@ print(f"Confidence: {predictions[0][class_idx]*100:.2f}%")
 project/
 │
 ├── dataset-tomat.zip
-├── model/
-│   ├── cnn_model.py
-│   ├── resnet_model.py
-│   └── efficientnet_model.py
+├── src/
+│   ├── app.py
 │
 ├── notebook/
 │   ├── CNN.ipynb
 │   ├── ResNet.ipynb
 │   └── EfficientNet.ipynb
 │
-├── saved_models/
+├── model/
 │   ├── cnn_model.h5
 │   ├── resnet50_model.h5
 │   └── temp_efficientnetb0.h5
