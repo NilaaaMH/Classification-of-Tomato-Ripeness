@@ -5,6 +5,7 @@ Proyek ini mengimplementasikan sistem klasifikasi otomatis untuk menentukan ting
 
 ## Dataset
 
+Sumber : https://www.kaggle.com/datasets/enalis/tomatoes-dataset 
 Dataset terdiri dari 6,487 gambar tomat yang terbagi dalam 4 kelas:
 - **Old**: 2,214 gambar
 - **Ripe**: 2,195 gambar
@@ -24,6 +25,8 @@ Model CNN sederhana dengan arsitektur custom:
 - MaxPooling2D setelah setiap Conv2D
 - Fully connected layer dengan 128 neurons
 - Dropout 0.5 untuk regularisasi
+- Optimizer Adam
+- Total parameters ~2.5M
 
 **Hasil:**
 - Test Accuracy: **76%**
@@ -31,12 +34,14 @@ Model CNN sederhana dengan arsitektur custom:
 - Performa terendah pada kelas Damaged (F1-score: 0.09)
 
 ### 2. ResNet50 (Transfer Learning)
-Model pre-trained ResNet50 dengan fine-tuning:
-- Base model: ResNet50 (ImageNet weights)
+Model pre-trained ResNet50 dari ImageNet:
+- Base model: ResNet50 (frozen layers)
 - GlobalAveragePooling2D
 - Dense layer 256 neurons
 - Dropout 0.5
 - Early stopping dengan patience=5
+- Learning Rate 1e-4
+- Total parameters ~24M (trainable ~1M)
 
 **Hasil:**
 - Test Accuracy: **97%**
@@ -45,12 +50,14 @@ Model pre-trained ResNet50 dengan fine-tuning:
 - F1-score terendah: Damaged (0.91)
 
 ### 3. EfficientNetB0 (Transfer Learning)
-Model pre-trained EfficientNetB0 dengan arsitektur efisien:
+Model pre-trained EfficientNetB0 dari ImageNet:
 - Base model: EfficientNetB0 (ImageNet weights)
 - GlobalAveragePooling2D
 - Dense layer 256 neurons
 - Dropout 0.5
 - Early stopping dengan patience=5
+- Learning Rate 1e-4
+- Total Parameters: ~5M (trainable: ~1M)
 
 **Hasil:**
 - Test Accuracy: **98%** (Model Terbaik)
@@ -65,6 +72,48 @@ Model pre-trained EfficientNetB0 dengan arsitektur efisien:
 | CNN | 76% | 0.79 | 0.76 | 0.73 |
 | ResNet50 | 97% | 0.97 | 0.97 | 0.97 |
 | **EfficientNetB0** | **98%** | **0.98** | **0.98** | **0.98** |
+
+## Analisis Detail Per Model
+1. CNN
+   - Kelebihan: Model sederhana, cepat untuk training
+   - Kekurangan: Akurasi rendah, terutama untuk kelas Damaged (recall hanya 5%)
+   - Performa Per Kelas:
+       - Damaged: Precision 0.86, Recall 0.05 (sangat buruk)
+       - Old: Precision 0.64, Recall 0.89
+       - Ripe: Precision 0.81, Recall 0.70
+       - Unripe: Precision 0.97, Recall 1.00 (sangat baik)
+
+2. ResNet50
+   - Kelebihan: Akurasi tinggi (97%), konsisten di semua kelas
+   - Performa Per Kelas:
+       - Damaged: Precision 0.98, Recall 0.85
+       - Old: Precision 0.95, Recall 0.98
+       - Ripe: Precision 0.98, Recall 0.97
+       - Unripe: Precision 0.98, Recall 1.00
+
+3. EfficientNetB0 (Model Terbaik)
+   - Kelebihan: Akurasi tertinggi (98%), efisien, performa seimbang
+   - Performa Per Kelas:
+       - Damaged: Precision 0.98, Recall 0.91
+       - Old: Precision 0.97, Recall 0.98
+       - Ripe: Precision 0.99, Recall 0.99
+       - Unripe: Precision 0.99, Recall 1.00
+         
+**Kesimpulan Analisis**
+1. Transfer Learning jauh lebih efektif dibanding CNN from scratch
+2. EfficientNetB0 memberikan hasil terbaik dengan model size yang lebih kecil dari ResNet50
+3. Kelas Unripe paling mudah diklasifikasi (recall 100% di semua model transfer learning)
+4. Kelas Damaged paling sulit (terutama pada CNN)
+
+# Download Model
+Model yang sudah dilatih dapat diunduh melalui Google Drive:
+- CNN Model :
+- ResNet50 Model :
+- EfficientNetB0 Model :
+
+## Format model .h5
+
+# Panduan Menjalankan Website 
 
 ## Requirements
 
@@ -207,14 +256,17 @@ Model menghasilkan beberapa visualisasi untuk analisis:
 - [ ] Deployment model ke web/mobile application
 - [ ] Real-time classification menggunakan webcam
 
-## Lisensi
+# Catatan Penting
+**Pastikan gambar input berformat JPG/JPEG/PNG**
+**Ukuran gambar akan otomatis diresize ke 224x224**
+**Model EfficientNetB0 direkomendasikan untuk penggunaan production**
 
-MIT License
+# Kontributor
+Nama : [Nilla Mery Handayani]
+NIM  : 202210370311304
 
 ## Kontak
 
 Untuk pertanyaan atau kolaborasi, silakan hubungi melalui repository ini.
 
 ---
-
-**Dibuat dengan ❤️ menggunakan TensorFlow dan Keras**
