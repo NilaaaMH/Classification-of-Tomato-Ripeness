@@ -6,7 +6,7 @@ Proyek ini mengimplementasikan sistem klasifikasi otomatis untuk menentukan ting
 ## Dataset
 
 Sumber : https://www.kaggle.com/datasets/enalis/tomatoes-dataset 
-Dataset terdiri dari 6,487 gambar tomat yang terbagi dalam 4 kelas:
+- Dataset terdiri dari 6,487 gambar tomat yang terbagi dalam 4 kelas:
 - **Old**: 2,214 gambar
 - **Ripe**: 2,195 gambar
 - **Unripe**: 1,419 gambar
@@ -216,20 +216,20 @@ print(f"Confidence: {predictions[0][class_idx]*100:.2f}%")
 project/
 │
 ├── dataset-tomat.zip
-├── models/
+├── model/
 │   ├── cnn_model.py
 │   ├── resnet_model.py
 │   └── efficientnet_model.py
 │
-├── notebooks/
-│   ├── 01_CNN.ipynb
-│   ├── 02_ResNet.ipynb
-│   └── 03_EfficientNet.ipynb
+├── notebook/
+│   ├── CNN.ipynb
+│   ├── ResNet.ipynb
+│   └── EfficientNet.ipynb
 │
 ├── saved_models/
-│   ├── model_cnn.h5
-│   ├── model_resnet.h5
-│   └── model_efficientnet.h5
+│   ├── cnn_model.h5
+│   ├── resnet50_model.h5
+│   └── temp_efficientnetb0.h5
 │
 └── README.md
 ```
