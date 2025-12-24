@@ -1,0 +1,15 @@
+[project]
+name = "UAP"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "TehObengKu", email = "nillahandayani5@gmail.com"},
+]
+dependencies = ["streamlit>=1.52.2", "tensorflow>=2.20.0", "scikit-learn>=1.7.2", "pillow>=10.4.0", "plotly>=6.5.0", "opencv-python>=4.12.0.88"]
+requires-python = "==3.10.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
