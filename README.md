@@ -53,7 +53,7 @@ Model pre-trained EfficientNetB0 dengan arsitektur efisien:
 - Early stopping dengan patience=5
 
 **Hasil:**
-- Test Accuracy: **98%** ⭐ (Model Terbaik)
+- Test Accuracy: **98%** (Model Terbaik)
 - Performa excellent di semua kelas
 - F1-score Unripe & Ripe: 1.00 dan 0.99
 - Balanced performance across classes
